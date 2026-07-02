@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
+import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import RootProvider from '@/components/providers/RootProvider';
 import Cursor from '@/components/cursor/Cursor';
 import Preloader from '@/components/preloader/Preloader';
 import Nav from '@/components/nav/Nav';
 import CommandPalette from '@/components/nav/CommandPalette';
+import ParticleBackground from '@/components/background/ParticleBackgroundLoader';
+
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-clash' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-montreal' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
   title: 'Vedant Yerne — Software Developer & AI/ML Engineer',
@@ -49,14 +55,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className={`dark ${spaceGrotesk.variable} ${inter.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -82,11 +82,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <RootProvider>
+          {/* Global particle background — sits behind everything */}
+          <ParticleBackground />
           <Preloader />
           <Cursor />
           <Nav />
           <CommandPalette />
-          <main>{children}</main>
+          <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>
         </RootProvider>
       </body>
     </html>

@@ -1,34 +1,5 @@
 @import 'tailwindcss';
 
-/* ─── Font Declarations ─────────────────────────────────────────────────────── */
-@font-face {
-  font-family: 'Clash Display';
-  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2');
-  font-weight: 200 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
-}
-
 /* ─── Design Tokens ─────────────────────────────────────────────────────────── */
 :root {
   --background: #0A0A0A;
@@ -61,12 +32,13 @@ html {
   font-size: 16px;
   scroll-behavior: auto; /* Lenis handles smooth scroll */
   overflow-x: hidden;
+  background-color: var(--background);
 }
 
 body {
-  background-color: var(--background);
+  background-color: transparent;
   color: var(--text-primary);
-  font-family: 'Neue Montreal', sans-serif;
+  font-family: var(--font-montreal), sans-serif;
   overflow-x: hidden;
   cursor: none; /* Custom cursor */
   -webkit-font-smoothing: antialiased;
@@ -127,11 +99,12 @@ body::after {
 }
 
 /* ─── Typography Utilities ──────────────────────────────────────────────────── */
-.font-clash { font-family: 'Clash Display', sans-serif; }
-.font-montreal { font-family: 'Neue Montreal', sans-serif; }
+.font-clash { font-family: var(--font-clash), sans-serif; }
+.font-montreal { font-family: var(--font-montreal), sans-serif; }
+.font-mono { font-family: var(--font-mono), monospace; }
 
 .hero-text {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-clash), sans-serif;
   font-size: clamp(4rem, 12vw, 14rem);
   font-weight: 700;
   line-height: 0.9;
@@ -140,14 +113,14 @@ body::after {
 }
 
 .section-title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-clash), sans-serif;
   font-size: clamp(2.5rem, 5vw, 6rem);
   font-weight: 600;
   letter-spacing: -0.03em;
 }
 
 .overline {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono), monospace;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -307,7 +280,7 @@ body::after {
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.3);
   color: #60A5FA;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono), monospace;
 }
 
 /* ─── Loading States ────────────────────────────────────────────────────────── */
